@@ -13,32 +13,55 @@ state = {
     {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
     {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
   ],
-  // contacts: [],
   filter: '',
-  
-  }
+}
   
   addContacts = (newContact) => {
-    console.log(newContact);
-    this.setState(prevState => ({
+    this.state.contacts.filter(
+      contact =>
+        contact.name.toLowerCase().trim() ===
+        newContact.name.toLowerCase().trim() ||
+        contact.number.trim() === newContact.number.trim()
+    ).length
+      ? alert(`${newContact.name}: is already in contacts`)
+      :this.setState(prevState => ({
       contacts: [...prevState.contacts, { ...newContact, id: nanoid() }]
     }))
+    
   }
 
-  onChange = newFilter => {
+  changeFilter = newFilter => {
     this.setState({
       filter: newFilter,
     })
   }
 
-render() {
+  getVisibleName = () => {
+    const { filter, contacts } = this.state;
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase()));
+  }
+  
+  deleteContacts = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact=>contact.id !== contactId )
+    }))
+  }
+
+  render() {
+  
+     const visibleName = this.getVisibleName();
+    
     return (<div>
       <h1>Phonebook</h1>
       <ContactForm onAdd={this.addContacts } />
       
       <h2>Contacts</h2>
-      <Filter filter = {this.state.filter} onChahgeFilter = {this.onChange} />
-      <ContactList contacts={this.state.contacts} />
+      <Filter
+        filter={this.state.filter}
+        onChangeFilter={this.changeFilter} />
+      
+      <ContactList contacts={visibleName} onDelete = {this.deleteContacts} />
 </div>
     
       
