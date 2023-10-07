@@ -1,6 +1,6 @@
 import { Formik,Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-
+import { FaUser, FaUserPlus, FaPhoneAlt } from "react-icons/fa";
 
  const FormSchema = Yup.object().shape({
    name:  Yup.string()
@@ -28,12 +28,13 @@ export const ContactForm = ({ onAdd }) => {
     }}
     >
       <Form>
+        <FaUser/>
         <label>
           Name
           <Field name="name" />
           <ErrorMessage name ="name"/>
         </label>
-        
+        <FaPhoneAlt/>
         <label>
           Number
           <Field type="tel" name="number" />
@@ -42,7 +43,7 @@ export const ContactForm = ({ onAdd }) => {
         
 
         
-        <button type="submit">Add contact</button>
+        <button type="submit"><FaUserPlus/> Add contacts</button>
       </Form>
     </Formik>
   

@@ -1,12 +1,14 @@
-
+import { FaSistrix } from "react-icons/fa";
 
 export const Filter = ({ filter, onChangeFilter }) => {
     return (<div>
         <label>
             Find contact by name 
-            <input
+            <FaSistrix/>
+            <input 
                 type="text"
                 name="name"
+                placeholder="search"
                 defaultValue={filter}
                 onChange={evt => {
                     onChangeFilter(evt.target.value)
