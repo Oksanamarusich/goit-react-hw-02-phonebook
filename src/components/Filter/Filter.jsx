@@ -1,22 +1,21 @@
-import { FaSistrix } from "react-icons/fa";
+
+import {ContainerFilter, Label, FilterInput } from "./Filter.styled"
 
 export const Filter = ({ filter, onChangeFilter }) => {
-    return (<div>
-        <label>
+    return (<ContainerFilter>
+        <Label>
             Find contact by name 
-            <FaSistrix/>
-            <input 
+        </Label>
+            <FilterInput 
                 type="text"
                 name="name"
-                placeholder="search"
                 defaultValue={filter}
                 onChange={evt => {
                     onChangeFilter(evt.target.value)
                 }}
                 />
-        </label>
         
-    </div>
+    </ContainerFilter>
     )
 }
 // export const Filter = ({filter, onChahgeFilter}) => {

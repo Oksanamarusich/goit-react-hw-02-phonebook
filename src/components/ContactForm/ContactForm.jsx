@@ -1,6 +1,8 @@
-import { Formik,Field, Form, ErrorMessage } from 'formik';
+import { Formik  } from 'formik';
 import * as Yup from 'yup';
-import { FaUser, FaUserPlus, FaPhoneAlt } from "react-icons/fa";
+import { FaUserPlus } from "react-icons/fa";
+
+import { Container,StyledForm, StyledField, Button, Label, Error } from "./ContactForm.styled";
 
  const FormSchema = Yup.object().shape({
    name:  Yup.string()
@@ -14,7 +16,7 @@ import { FaUser, FaUserPlus, FaPhoneAlt } from "react-icons/fa";
  });
 
 export const ContactForm = ({ onAdd }) => {
-  return <div>
+  return <Container>
      <Formik
     initialValues={{
       name: '',
@@ -27,26 +29,26 @@ export const ContactForm = ({ onAdd }) => {
       actions.resetForm();
     }}
     >
-      <Form>
-        <FaUser/>
-        <label>
-          Name
-          <Field name="name" />
-          <ErrorMessage name ="name"/>
-        </label>
-        <FaPhoneAlt/>
-        <label>
+      <StyledForm>
+        
+        <Label>
+           Name
+          <StyledField name="name" />
+          <Error name ="name" component ="div"/>
+        </Label>
+        
+        <Label>
           Number
-          <Field type="tel" name="number" />
-          <ErrorMessage name ="number"/>
-        </label>
+          <StyledField type="tel" name="number" />
+          <Error name ="number" component ="div"/>
+        </Label>
         
 
         
-        <button type="submit"><FaUserPlus/> Add contacts</button>
-      </Form>
+        <Button type="submit"><FaUserPlus/> Add contacts</Button>
+      </StyledForm>
     </Formik>
   
 
-  </div>
+  </Container>
 }
