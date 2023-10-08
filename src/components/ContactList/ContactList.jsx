@@ -1,12 +1,15 @@
 import { FaTrashAlt } from "react-icons/fa";
+
+import {Container, List, ListItem, Button} from './ContactList.styled'
+
 export const ContactList = ({ contacts, onDelete }) => {
     
-    return <div>
+    return <Container>
         {contacts.map(({id, name, number}) => (
-            <ul key={id}>
-                <li><p>{name}: {number}</p>
-                    <button type="button" onClick={() => onDelete(id)}><FaTrashAlt/></button>
-                </li>
-            </ul>))}
-    </div>
+            <List key={id}>
+                <ListItem><p>{name}: {number}</p>
+                    <Button type="button" onClick={() => onDelete(id)}><FaTrashAlt/></Button>
+                </ListItem>
+            </List>))}
+    </Container>
 }
